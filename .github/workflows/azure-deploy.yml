@@ -4,6 +4,11 @@ on:
   push:
     branches:
       - main
+  workflow_dispatch:
+
+permissions:
+  id-token: write
+  contents: read
 
 jobs:
   build-and-deploy:
@@ -28,7 +33,9 @@ jobs:
     - name: Log in to Azure
       uses: azure/login@v1
       with:
-        creds: ${{ secrets.AZURE_CREDENTIALS }}
+        client-id: 'ac377093-8bcb-4acb-907e-9187092f8a95'
+        tenant-id: '6ce00586-49c5-4f4f-b1d4-595f9c9081e3'
+        subscription-id: '18076092-3a88-433d-a-689-e4e143180d8a'
 
     - name: Deploy to Azure App Service
       uses: azure/webapps-deploy@v2
